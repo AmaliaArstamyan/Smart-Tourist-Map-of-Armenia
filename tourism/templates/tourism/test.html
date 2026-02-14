@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>API Test Page</h1>
+    
+    <h2>Regions:</h2>
+    <div id="regions"></div>
+    
+    <h2>Categories:</h2>
+    <div id="categories"></div>
+    
+    <h2>Places:</h2>
+    <div id="places"></div>
+
+    <script>
+        // Simple fetch to test API
+        async function testAPI() {
+            try {
+                // Test regions
+                const regionsRes = await fetch('/api/regions/');
+                const regions = await regionsRes.json();
+                document.getElementById('regions').innerHTML = 
+                    '<pre>' + JSON.stringify(regions, null, 2) + '</pre>';
+                
+                // Test categories
+                const catsRes = await fetch('/api/categories/');
+                const categories = await catsRes.json();
+                document.getElementById('categories').innerHTML = 
+                    '<pre>' + JSON.stringify(categories, null, 2) + '</pre>';
+                
+                // Test places
+                const placesRes = await fetch('/api/places/');
+                const places = await placesRes.json();
+                document.getElementById('places').innerHTML = 
+                    '<pre>' + JSON.stringify(places, null, 2) + '</pre>';
+                
+            } catch (error) {
+                document.body.innerHTML += '<p style="color:red">Error: ' + error + '</p>';
+            }
+        }
+        
+        testAPI();
+    </script>
+</body>
+</html>
